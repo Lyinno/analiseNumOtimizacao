@@ -4,7 +4,7 @@
 
 double* gradient(double (*f)(double* x), double* x, int n){
     double h = 1e-7;
-    double* grad = vet_cria(2);
+    double* grad = vet_cria(n);
     for (int i=0; i<n; i++){
         double xOri = *(x+i);
         
@@ -20,6 +20,5 @@ double* gradient(double (*f)(double* x), double* x, int n){
 
         *(grad+i) = g;
     }
-
     return grad;
 }

@@ -29,7 +29,7 @@ int mips (double r, double delta, double (*f) (double* x), double* xmin, double*
 
     int ite = 0;
     double x;
-    while (ite < 50){
+    while (ite < 5000){
 
         if ((ite>2)&&(fabs(fs-ft) < 1e-6)){
             *(xmin) = (s+t)/2.0;
@@ -72,7 +72,7 @@ int* otimiza(double (*f)(double* x), double* x0, int n, int IPS, double step){
     double f0 = f(x0);
     int totalIteIPS = 0;
     int i = 0;
-    while (i < 5000){
+    while (i < 50000){
         double aVal;
         double* v = gradient(f, x0, n);
         if (IPS){
