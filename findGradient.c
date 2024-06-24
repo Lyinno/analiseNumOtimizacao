@@ -1,6 +1,7 @@
 #include "findGradient.h"
 #include "vetor.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 double* gradient(double (*f)(double* x), double* x, int n){
     double h = 1e-7;

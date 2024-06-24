@@ -48,17 +48,37 @@ int mips (double r, double delta, double (*f) (double* x), double* xmin, double*
             x -= (num/denom);
         }
 
+        double* xParam = vet_cria(n);
+        vet_mults(n, v, x, xParam);
+        vet_sub(n, xk, xParam, xParam);
+        double fx = f(xParam);
+        vet_libera(xParam);
+        
+        // if (fs >= fr){
+        //     if (fs >= ft){
+        //         s = x;
+        //         fs = fx;
+        //     }else{
+        //         t = x;
+        //         ft = fx;
+        //     }
+        // }else{
+        //     if (fr >= ft){
+        //         r = x;
+        //         fr = fx;
+        //     }else{
+        //         t = x;
+        //         ft = fx;
+        //     }
+        // }
+
         r = s;
         s = t;
         t = x;
         fr = fs;
         fs = ft;
-
-        double* xParam = vet_cria(n);
-        vet_mults(n, v, x, xParam);
-        vet_sub(n, xk, xParam, xParam);
-        ft = f(xParam);
-        vet_libera(xParam);
+        ft = fx;
+        
         ite ++;
     }
     *(xmin) = (s+t)/2.0;
@@ -91,7 +111,7 @@ int* otimiza(double (*f)(double* x), double* x0, int n, int IPS, double step){
         vet_mults(n, v, aVal, v);
         vet_sub(n, x0, v, x0);
         i++;
-        if (i%10 == 0){
+        if (i%1 == 0){
             double f1 = f(x0);
             if (fabs(f1-f0) < 1e-6){
                 break;
