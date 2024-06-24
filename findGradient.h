@@ -1,0 +1,1 @@
+double* gradient(double (*f)(double* x), double* x, int n);
